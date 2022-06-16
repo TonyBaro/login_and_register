@@ -30,6 +30,9 @@ def log_in():
     data={
         'email':request.form['email']
     }
-    User.log_in(data)
+    user = User.log_in(data)
     if bcrypt.check_password_hash(user.password, request.form['password']):
-        print("succsess")
+        session['user_id'] = user.id
+        return ("logged in")
+    else:
+        return ("FAIL")

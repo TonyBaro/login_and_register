@@ -42,5 +42,5 @@ class User:
     def log_in(cls,data):
         query="SELECT * FROM users WHERE email = %(email)s"
         results = connectToMySQL('users').query_db( query, data )
-        return User(results[0])
+        return cls(results[0])
         
